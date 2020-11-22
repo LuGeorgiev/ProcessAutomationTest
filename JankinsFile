@@ -1,0 +1,16 @@
+pipeline {
+    agent any
+    stages {
+        stage('Veify Branch') {
+            stepes {
+                echo "$GIT_BRANCH"
+            }
+        }
+        stage('Docker Build') {
+            stepes {
+                powershell (script: 'docker-compose')
+                powershell (script: 'docker images -a')
+            }
+        }
+    }
+}
